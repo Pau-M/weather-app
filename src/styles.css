@@ -57,9 +57,11 @@ h2 {
 h3 {
   font-size: 20px;
 }
-.main_icon {
-  font-size: 100px;
-  margin-left: 40px;
+.main-icon {
+  height: 140px;
+  width: 140px;
+  margin-left: 20px;
+  filter: contrast(200%);
 }
 
 #radios label + label {

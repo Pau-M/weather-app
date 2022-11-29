@@ -1,7 +1,7 @@
 /// Get current date and time
 
-function dateTime() {
-  let now = new Date();
+function dateTime(timestamp) {
+  let now = new Date(timestamp);
   let day = now.getDay();
   let days = [
     "Sunday",
@@ -37,11 +37,55 @@ function dateTime() {
   if (minutes < 10) {
     minutes = `0${minutes}`;
   }
-  let appDate = `${days[day]}, ${dayMonth}. ${months[month]}  ${hour}:${minutes}`;
-  let currentDate = document.querySelector("#current-date");
-  currentDate.innerHTML = appDate;
+  return `${days[day]}, ${dayMonth}. ${months[month]}  ${hour}:${minutes}`;
 }
-dateTime();
+
+///default city for weather
+function defaultCity(city) {
+  let apiKey = "72bb9dab46b9ec3d65f423c63f27a9b8";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
+  axios.get(apiUrl).then(locationWeather);
+}
+defaultCity("Tokyo");
+/// timestamp
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let month = date.getMonth();
+  let months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  let hour = date.getHours();
+  if (hour < 10) {
+    hour = `0${hour}`;
+  }
+
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+  return `${days[day]}, ${dayMonth}. ${months[month]}  ${hour}:${minutes}`;
+}
 
 ///Name of the city after searching
 function cityName(event) {
@@ -88,11 +132,21 @@ celsius.addEventListener("click", FarenheitToCelsius);
 /// Display searching city and temperature part 2
 
 function locationWeather(response) {
+  let location = document.querySelector("#app-city");
+  location.innerHTML = response.data.name;
   let currentSearchTemp = document.querySelector("#main-temp");
   let temperature = Math.round(response.data.main.temp);
-  currentSearchTemp.innerHTML = `${temperature}`;
+  currentSearchTemp.innerHTML = temperature;
   let description = document.querySelector("#decription");
   description.innerHTML = response.data.weather[0].description;
+  let dateElement = document.querySelector("#current-date");
+  dateElement.innerHTML = dateTime(response.data.dt * 1000);
+  let iconElement = document.querySelector("#main-icon");
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  iconElement.setAttribute("alt", response.data.weather[0].description);
 }
 
 ///Current geolocation
@@ -101,17 +155,7 @@ function myPosition(position) {
   let lat = position.coords.latitude;
   let long = position.coords.longitude;
   let urlWeather = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=metric&appid=${apiKey}`;
-  axios.get(urlWeather).then(showWeather);
-}
-
-function showWeather(response) {
-  let currentgeoTemp = document.querySelector("#main-temp");
-  let temperature = Math.round(response.data.main.temp);
-  currentgeoTemp.innerHTML = temperature;
-  let currentGeoLocation = document.querySelector("#app-city");
-  currentGeoLocation.innerHTML = response.data.name;
-  let description = document.querySelector("#decription");
-  description.innerHTML = response.data.weather[0].description;
+  axios.get(urlWeather).then(locationWeather);
 }
 
 function getcurrentLocation(event) {
