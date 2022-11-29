@@ -108,12 +108,17 @@ let city = document.querySelector("#city-search");
 city.addEventListener("submit", cityName);
 
 /// Celsius to Farenheit
+let celsiusTemperature = null;
 
 function CelusToFarenheit(event) {
   event.preventDefault();
   let temperature = document.querySelector("#main-temp");
-  let farenheitTemp = temperature.innerHTML;
-  temperature.innerHTML = Math.round((farenheitTemp * 9) / 5 + 32);
+
+  let farenheitTemp = Math.round((celsiusTemperature * 9) / 5 + 32);
+
+  temperature.innerHTML = farenheitTemp;
+  celsius.classList.remove("active");
+  farenheit.classList.add("active");
 }
 let farenheit = document.querySelector("#fahrenheit-link");
 farenheit.addEventListener("click", CelusToFarenheit);
@@ -122,9 +127,10 @@ farenheit.addEventListener("click", CelusToFarenheit);
 
 function FarenheitToCelsius(event) {
   event.preventDefault();
+  celsius.classList.add("active");
+  farenheit.classList.remove("active");
   let temperature = document.querySelector("#main-temp");
-  let celsiusTemp = temperature.innerHTML;
-  temperature.innerHTML = `21`;
+  temperature.innerHTML = Math.round(celsiusTemperature);
 }
 let celsius = document.querySelector("#celsius-link");
 celsius.addEventListener("click", FarenheitToCelsius);
@@ -132,6 +138,7 @@ celsius.addEventListener("click", FarenheitToCelsius);
 /// Display searching city and temperature part 2
 
 function locationWeather(response) {
+  console.log(response.data);
   let location = document.querySelector("#app-city");
   location.innerHTML = response.data.name;
   let currentSearchTemp = document.querySelector("#main-temp");
@@ -147,6 +154,10 @@ function locationWeather(response) {
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
+
+  celsiusTemperature = response.data.main.temp;
+  humidity = response.data.main.humidity;
+  windSpeed = response.data.wind.speed;
 }
 
 ///Current geolocation
@@ -164,3 +175,42 @@ function getcurrentLocation(event) {
 }
 let currentLocationButton = document.querySelector("#current-location");
 currentLocationButton.addEventListener("click", getcurrentLocation);
+/// temperature button radio
+
+function backToTemperature(event) {
+  event.preventDefault();
+  let temperature = document.querySelector("#main-temp");
+  temperature.innerHTML = Math.round(celsiusTemperature);
+  let unit = document.querySelector("#unit");
+  unit.innerHTML = "°C";
+}
+let temperatureRadio = document.querySelector("#temp-radio");
+temperatureRadio.addEventListener("change", backToTemperature);
+
+/// precipitation button radio
+let humidity = null;
+
+function showHumidity(event) {
+  event.preventDefault();
+  let locationHumidity = document.querySelector("#main-temp");
+  locationHumidity.innerHTML = humidity;
+  let unit = document.querySelector("#unit");
+  unit.innerHTML = "%";
+}
+
+let precipitationRadio = document.querySelector("#precipitation-radio");
+precipitationRadio.addEventListener("change", showHumidity);
+
+///wind button radio
+let windSpeed = null;
+
+function showWind(event) {
+  event.preventDefault();
+  let locationWind = document.querySelector("#main-temp");
+  locationWind.innerHTML = windSpeed;
+  let unit = document.querySelector("#unit");
+  unit.innerHTML = "km/h";
+}
+
+let windRadio = document.querySelector("#wind-radio");
+windRadio.addEventListener("change", showWind);
