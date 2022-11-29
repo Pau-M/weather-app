@@ -7,7 +7,7 @@ body {
 .weather-app {
   display: block;
   margin: 120px auto;
-  max-width: 800px;
+  max-width: 700px;
   border-radius: 40px;
 }
 .card-body {
