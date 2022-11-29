@@ -59,6 +59,7 @@ h3 {
 }
 .main_icon {
   font-size: 100px;
+  margin-left: 40px;
 }
 
 #radios label + label {

@@ -30,7 +30,7 @@
         <div class="card border-0">
           <div class="card-body bg-light">
             <div class="row g-1">
-              <div class="col-sm g-1 align-items-center">
+              <div class="col g-1 align-items-center">
                 <div class="searcher-bar d-flex justify-content-end">
                   <form id="city-search">
                     <input
@@ -40,12 +40,12 @@
                       id="search-city-input"
                       autocomplete="off"
                     />
-                    <span class="col-sm-auto">
+                    <span class="col-auto">
                       <button type="submit" class="btn btn-secondary">
                         <i class="fa-solid fa-magnifying-glass"></i>
                       </button>
                     </span>
-                    <span class="col-sm-auto">
+                    <span class="col-auto">
                       <button
                         type="button"
                         class="btn btn-secondary"
@@ -59,26 +59,25 @@
               </div>
             </div>
             <div class="row g-4">
-              <div class="col-sm-3">
-                <h2 id="app-city">CITY</h2>
-                <h3 id="current-date">Date/Time</h3>
-                <h1>
-                  <span id="main-temp">21</span
-                  ><span class="units">
-                    <a href="#" class="disable-link" id="celsius-link">°C</a> |
-                    <a href="#" id="fahrenheit-link">°F</a>
-                  </span>
-                </h1>
-                <p id="decription">Description of weather</p>
+              <div class="col d-flex">
+                <div>
+                  <h2 id="app-city">CITY</h2>
+                  <h3 id="current-date">Date/Time</h3>
+                  <h1>
+                    <span id="main-temp">21</span
+                    ><span class="units">
+                      <a href="#" class="disable-link" id="celsius-link">°C</a>
+                      |
+                      <a href="#" id="fahrenheit-link">°F</a>
+                    </span>
+                  </h1>
+                  <p id="decription">Description of weather</p>
+                </div>
+                <div class="d-flex align-items-center">
+                  <i class="fa-solid fa-cloud-showers-heavy main_icon"></i>
+                </div>
               </div>
-              <div
-                class="col-sm-5 d-flex align-items-center justify-content-around"
-              >
-                <i class="fa-solid fa-cloud-showers-heavy main_icon"></i>
-              </div>
-              <div
-                class="col-sm-4 d-flex align-items-stretch justify-content-end"
-              >
+              <div class="col-4 d-flex align-items-stretch justify-content-end">
                 <div class="radios">
                   <div class="form-check form-check-inline">
                     <input
@@ -120,7 +119,7 @@
             </div>
             <hr />
             <div class="row g-2">
-              <div class="col-sm">
+              <div class="col">
                 <div class="card text-center shadow-sm border-0">
                   <div class="card-body bg-white p-1">
                     <h5 class="forecast-day-title">Day 1</h5>
@@ -129,7 +128,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-sm">
+              <div class="col">
                 <div class="card text-center shadow-sm border-0">
                   <div class="card-body bg-white p-1">
                     <h5 class="forecast-day-title">Day 2</h5>
@@ -138,7 +137,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-sm">
+              <div class="col">
                 <div class="card text-center shadow-sm border-0">
                   <div class="card-body bg-white p-1">
                     <h5 class="forecast-day-title">Day3</h5>
@@ -147,7 +146,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-sm">
+              <div class="col">
                 <div class="card text-center shadow-sm border-0">
                   <div class="card-body bg-white p-1">
                     <h5 class="forecast-day-title">Day 4</h5>
@@ -156,7 +155,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-sm">
+              <div class="col">
                 <div class="card text-center shadow-sm border-0">
                   <div class="card-body bg-white p-1">
                     <h5 class="forecast-day-title">Day 5</h5>
@@ -168,10 +167,12 @@
             </div>
             <footer>
               <hr />
-              coded by<strong>
-                <a href="https://github.com/Pau-M/weather-app"
-                  >Paulina Mozga</a
-                ></strong
+              <small
+                >coded by<strong>
+                  <a href="https://github.com/Pau-M/weather-app" target="_blank"
+                    >Paulina Mozga</a
+                  ></strong
+                ></small
               >
             </footer>
           </div>
