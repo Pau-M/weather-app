@@ -12,7 +12,7 @@ body {
 }
 .card-body {
   border-radius: 10px;
-  opacity: 80%;
+  backdrop-filter: opacity(80%);
   transition: all 200ms ease-in-out;
   padding: 30px;
 }
