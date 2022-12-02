@@ -182,7 +182,9 @@ function backToTemperature(event) {
   let temperature = document.querySelector("#main-temp");
   temperature.innerHTML = Math.round(celsiusTemperature);
   let unit = document.querySelector("#unit");
-  unit.innerHTML = "°C";
+  unit.style.display = "inline";
+  let newUnits = document.querySelector("#test");
+  newUnits.innerHTML = null;
 }
 let temperatureRadio = document.querySelector("#temp-radio");
 temperatureRadio.addEventListener("change", backToTemperature);
@@ -193,9 +195,11 @@ let humidity = null;
 function showHumidity(event) {
   event.preventDefault();
   let locationHumidity = document.querySelector("#main-temp");
-  locationHumidity.innerHTML = humidity;
+  locationHumidity.innerHTML = `${humidity}`;
   let unit = document.querySelector("#unit");
-  unit.innerHTML = "%";
+  unit.style.display = "none";
+  let humUnit = document.querySelector("#test");
+  humUnit.innerHTML = "%";
 }
 
 let precipitationRadio = document.querySelector("#precipitation-radio");
@@ -207,9 +211,11 @@ let windSpeed = null;
 function showWind(event) {
   event.preventDefault();
   let locationWind = document.querySelector("#main-temp");
-  locationWind.innerHTML = windSpeed;
+  locationWind.innerHTML = `${windSpeed}`;
   let unit = document.querySelector("#unit");
-  unit.innerHTML = "km/h";
+  unit.style.display = "none";
+  let windUnit = document.querySelector("#test");
+  windUnit.innerHTML = "km/h";
 }
 
 let windRadio = document.querySelector("#wind-radio");
