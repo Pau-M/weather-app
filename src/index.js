@@ -201,7 +201,7 @@ function displayForecast(response) {
       forecastHTML =
         forecastHTML +
         `
-        <div class="col-sm"-2>
+        <div class="col-sm">
                 <div class="card text-center shadow-sm border-0">
                   <div class="card-body bg-white p-2">
                     <h5 class="forecast-day-title">${formatDay(
@@ -213,7 +213,7 @@ function displayForecast(response) {
           }@2x.png"
           alt="" class="weather_icon"
         />
-                    <p text-center class="forecast-temperature"><strong>${Math.round(
+                    <p class="forecast-temperature"><strong>${Math.round(
                       forecastDay.temp.max
                     )}°</strong>/${Math.round(forecastDay.temp.min)}°</p>
                   </div>
