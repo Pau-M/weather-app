@@ -104,37 +104,11 @@ function cityName(event) {
     "72bb9dab46b9ec3d65f423c63f27a9b8"; /*display searching city and temp part 11*/
   let urlWeather = `https://api.openweathermap.org/data/2.5/weather?q=${cityDisplay.value}&units=metric&appid=${apiKey}`;
   axios.get(urlWeather).then(locationWeather);
+  axios.get(urlWeather).then(locationWeather);
+  temperatureRadio.checked = true;
 }
 let city = document.querySelector("#city-search");
 city.addEventListener("submit", cityName);
-
-/// Celsius to Farenheit
-let celsiusTemperature = null;
-
-function CelusToFarenheit(event) {
-  event.preventDefault();
-  let temperature = document.querySelector("#main-temp");
-
-  let farenheitTemp = Math.round((celsiusTemperature * 9) / 5 + 32);
-
-  temperature.innerHTML = farenheitTemp;
-  celsius.classList.remove("active");
-  farenheit.classList.add("active");
-}
-let farenheit = document.querySelector("#fahrenheit-link");
-farenheit.addEventListener("click", CelusToFarenheit);
-
-/// Farenheit to Celsius
-
-function FarenheitToCelsius(event) {
-  event.preventDefault();
-  celsius.classList.add("active");
-  farenheit.classList.remove("active");
-  let temperature = document.querySelector("#main-temp");
-  temperature.innerHTML = Math.round(celsiusTemperature);
-}
-let celsius = document.querySelector("#celsius-link");
-celsius.addEventListener("click", FarenheitToCelsius);
 
 /// Display searching city and temperature part 2
 
@@ -143,7 +117,8 @@ function locationWeather(response) {
   let location = document.querySelector("#app-city");
   location.innerHTML = response.data.name;
   let currentSearchTemp = document.querySelector("#main-temp");
-  let temperature = Math.round(response.data.main.temp);
+  let temperature =
+    Math.round(response.data.main.temp) + `<span class="units">°C</span>`;
   currentSearchTemp.innerHTML = temperature;
   let description = document.querySelector("#decription");
   description.innerHTML = response.data.weather[0].description;
@@ -184,11 +159,8 @@ currentLocationButton.addEventListener("click", getcurrentLocation);
 function backToTemperature(event) {
   event.preventDefault();
   let temperature = document.querySelector("#main-temp");
-  temperature.innerHTML = Math.round(celsiusTemperature);
-  let unit = document.querySelector("#unit");
-  unit.style.display = "inline";
-  let newUnits = document.querySelector("#test");
-  newUnits.innerHTML = null;
+  temperature.innerHTML =
+    Math.round(celsiusTemperature) + `<span class="units">°C</span>`;
 }
 let temperatureRadio = document.querySelector("#temp-radio");
 temperatureRadio.addEventListener("change", backToTemperature);
@@ -199,11 +171,7 @@ let humidity = null;
 function showHumidity(event) {
   event.preventDefault();
   let locationHumidity = document.querySelector("#main-temp");
-  locationHumidity.innerHTML = `${humidity}`;
-  let unit = document.querySelector("#unit");
-  unit.style.display = "none";
-  let humUnit = document.querySelector("#test");
-  humUnit.innerHTML = "%";
+  locationHumidity.innerHTML = humidity + `<span class="units">%</span>`;
 }
 
 let precipitationRadio = document.querySelector("#precipitation-radio");
@@ -215,11 +183,7 @@ let windSpeed = null;
 function showWind(event) {
   event.preventDefault();
   let locationWind = document.querySelector("#main-temp");
-  locationWind.innerHTML = `${windSpeed}`;
-  let unit = document.querySelector("#unit");
-  unit.style.display = "none";
-  let windUnit = document.querySelector("#test");
-  windUnit.innerHTML = "km/h";
+  locationWind.innerHTML = windSpeed + `<span class="units">km/h</span>`;
 }
 
 let windRadio = document.querySelector("#wind-radio");

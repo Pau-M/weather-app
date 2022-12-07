@@ -44,22 +44,7 @@ h1 {
   font-weight: bold;
 }
 .units {
-  font-size: 20px;
-}
-.test {
   font-size: 30px;
-}
-.units a {
-  text-decoration: none;
-  color: black;
-}
-.weather-properties .active {
-  font-size: 30px;
-  cursor: default;
-}
-
-.weather-properties .active:hover {
-  text-decoration: none;
 }
 h2 {
   font-size: 40px;
@@ -112,7 +97,4 @@ input[type="radio"]:checked + .form-check-label {
 footer a {
   text-decoration: none;
   color: black;
-}
-.dawaj {
-  display: inline-flex;
 }
