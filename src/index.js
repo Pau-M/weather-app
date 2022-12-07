@@ -37,7 +37,7 @@ function dateTime(timestamp) {
   if (minutes < 10) {
     minutes = `0${minutes}`;
   }
-  return `${days[day]}, ${dayMonth}. ${months[month]}  ${hour}:${minutes}`;
+  return `${days[day]}, ${dayMonth}. ${months[month]} <br/> ${hour}:${minutes}`;
 }
 
 ///default city for weather
@@ -195,25 +195,25 @@ function displayForecast(response) {
 
   let forecastElement = document.querySelector("#forecast");
 
-  let forecastHTML = `<div class="row">`;
+  let forecastHTML = `<div class="row gx-2 p-2">`;
   forecast.forEach(function (forecastDay, index) {
     if (index < 5) {
       forecastHTML =
         forecastHTML +
         `
         <div class="col-sm"-2>
-                <div class="card dawaj text-center shadow-sm border-0">
-                  <div class="card-body bg-white p-1">
+                <div class="card text-center shadow-sm border-0">
+                  <div class="card-body bg-white p-2">
                     <h5 class="forecast-day-title">${formatDay(
                       forecastDay.dt
                     )}</h5>
-                    <img
+                    <img 
           src="http://openweathermap.org/img/wn/${
             forecastDay.weather[0].icon
           }@2x.png"
-          alt=""
+          alt="" class="weather_icon"
         />
-                    <p class="forecast-temperature"><strong>${Math.round(
+                    <p text-center class="forecast-temperature"><strong>${Math.round(
                       forecastDay.temp.max
                     )}°</strong>/${Math.round(forecastDay.temp.min)}°</p>
                   </div>
