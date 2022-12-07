@@ -13,7 +13,6 @@ body {
 .card-body {
   border-radius: 10px;
   padding: 30px;
-  margin: 10px;
 }
 .search-control {
   margin: 2.5px;
@@ -104,4 +103,8 @@ hr {
 footer a {
   text-decoration: none;
   color: black;
+}
+.forecast {
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
